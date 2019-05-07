@@ -7,6 +7,7 @@
 //
 
 #include <iostream>
+#include <algorithm>
 #include <vector>
 using namespace std;
 
@@ -35,11 +36,16 @@ int main() {
         sort(teamB.begin(), teamB.end());
         
         for(int i=0; i<n; i++) {
+            
+            if(teamA[i]<teamB[0]) {
+                maxCompetiton++;
+                i++;
+            }
             for(vector<int>::iterator iter=teamB.begin(); iter!=teamB.end(); iter++) {
                 if(teamA[i]<=*iter) {
                     teamB.erase(iter);
                     maxCompetiton++;
-                    iter--;
+                    break;
                 }
             }
         }
